@@ -12,7 +12,8 @@ export default defineConfig({
     icon({ iconDir: "src/assets/icons" })
   ],
   devToolbar: {
-    enabled: import.meta.env.DEV
+    // enabled: import.meta.env.DEV
+    enabled: false
   },
   prefetch: {
     prefetchAll: true

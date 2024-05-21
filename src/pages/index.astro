@@ -21,7 +21,9 @@ const allDiscography = (await Astro.glob('./discographies/*.md'))
                   <img src={heroImageSrc} class="w-full h-auto" alt={item.frontmatter.desc} loading="lazy" />
                 </a>
                 <div class="flex flex-col gap-1 items-start">
-                  <a href="javascript" class= "inline-flex justify-center items-center py-1 px-1.5 min-w-10 bg-[#e2e8f0] text-sm leading-[1] rounded-[4px] cursor-pointer">{item.frontmatter.type}</a>
+                  <a href="javascript" class= "inline-flex justify-center items-center py-1 px-1.5 min-w-10 bg-[#e2e8f0] text-sm leading-[1] rounded-[4px] cursor-pointer">
+                    {item.frontmatter.type}
+                  </a>
                   <a href={item.frontmatter.link} title={item.frontmatter.title} class="w-full leading-[1.4] text-base text-nowrap text-ellipsis overflow-hidden hover:underline text-[#1a202c]">{item.frontmatter.title}</a>
                   <span class="text-sm text-[#718096] leading-[1.4]">{item.frontmatter.date}</span>
                 </div>
@@ -38,7 +40,10 @@ const allDiscography = (await Astro.glob('./discographies/*.md'))
             <img src="/stores/20240521195440.jpg" class="w-full h-auto" alt="《复杂且歪歪扭扭的一首诗》实体专辑" loading="lazy" />
           </a>
           <div class="flex flex-col gap-1 items-start">
-            <a href="" title="" class="w-full leading-[1.4] text-base text-wrap hover:underline text-[#1a202c]">
+            <!-- <span class= "inline-flex justify-center items-center min-w-10 py-1 px-1.5 leading-[1.4] rounded-[4px] bg-[#e2e8f0] text-sm cursor-pointer">
+              WX: CYCLONE49149
+            </span> -->
+            <a href="" title="《复杂且歪歪扭扭的一首诗》实体专辑" class="w-full leading-[1.4] text-base text-wrap hover:underline text-[#1a202c]">
               《复杂且歪歪扭扭的一首诗》实体专辑
             </a>
             <span class="text-sm text-[#718096] leading-[1.4]">&yen;59</span>
@@ -46,6 +51,19 @@ const allDiscography = (await Astro.glob('./discographies/*.md'))
         </li>
       </ol>
     </Section>
-    <Section title="演出"></Section>
+    <Section title="演出">
+      <ol class="grid gap-4 grid-cols-3 max-md:grid-cols-2">
+        <li class="flex flex-col gap-3">
+          <a href="" title="《复杂且歪歪扭扭的一首诗》专辑巡演">
+            <img src="/shows/20240521202339.jpg" alt="《复杂且歪歪扭扭的一首诗》专辑巡演" loading="lazy" />
+          </a>
+          <div class="flex flex-col gap-1 items-start">
+            <a href="" title="《复杂且歪歪扭扭的一首诗》专辑巡演" class="w-full leading-[1.4] text-base text-wrap hover:underline text-[#1a202c]">
+              《复杂且歪歪扭扭的一首诗》专辑巡演
+            </a>
+          </div>
+        </li>
+      </ol>
+    </Section>
   </Content>
 </Layout>
