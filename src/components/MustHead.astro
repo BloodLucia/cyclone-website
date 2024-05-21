@@ -1,9 +1,11 @@
 ---
-import { SITE_EN_NAME } from "../config";
+import { Image } from "astro:assets";
+import { SITE_EN_NAME, SITE_TITLE } from "../config";
+import imgUrl from '../assets/images/20240521190810.jpg'
 ---
 
 <section class="relative md:max-w-[640px] md:mx-auto cursor-pointer">
-  <img class="my-12 w-full h-auto" src="/20240521190810.jpg" alt="Dreamy Coastline">
+  <Image class="my-12 w-full h-auto" src={imgUrl} alt={SITE_TITLE} />
   <div class="absolute w-full min-h-full inset-0 bg-transparent flex justify-end items-end z-10" >
     <h2 class="text-white font-brand p-3 text-base select-none">
       {SITE_EN_NAME}

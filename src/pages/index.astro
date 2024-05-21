@@ -4,8 +4,6 @@ import Content from "../components/Content.astro";
 import Section from "../components/Section.astro";
 
 const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/images/*.{jpeg,jpg,png,gif}');
-
-const allPosts = (await Astro.glob('./posts/*.md'))
 const allDiscography = (await Astro.glob('./discographies/*.md'))
 ---
 
@@ -33,20 +31,21 @@ const allDiscography = (await Astro.glob('./discographies/*.md'))
         }
       </ol>
     </Section>
-    <Section title="周边"></Section>
-    <!-- <Section title="动态">
-      <ol class="flex flex-col gap-4">
-        {
-          allPosts.map(post => {
-            return (
-              <li class="flex gap-4 text-base text-[#1a202c]">
-                <span>{post.frontmatter.createdAt}</span>
-                <span>{post.frontmatter.title}</span>
-              </li>
-            )
-          })
-        }
+    <Section title="周边">
+      <ol class="grid gap-4 grid-cols-3 max-md:grid-cols-2">
+        <li class="flex flex-col gap-3">
+          <a href="" title="《复杂且歪歪扭扭的一首诗》实体专辑" class="text-nowrap text-ellipsis inline-flex overflow-hidden">
+            <img src="/stores/20240521195440.jpg" class="w-full h-auto" alt="《复杂且歪歪扭扭的一首诗》实体专辑" loading="lazy" />
+          </a>
+          <div class="flex flex-col gap-1 items-start">
+            <a href="" title="" class="w-full leading-[1.4] text-base text-wrap hover:underline text-[#1a202c]">
+              《复杂且歪歪扭扭的一首诗》实体专辑
+            </a>
+            <span class="text-sm text-[#718096] leading-[1.4]">&yen;59</span>
+          </div>
+        </li>
       </ol>
-    </Section> -->
+    </Section>
+    <Section title="演出"></Section>
   </Content>
 </Layout>
