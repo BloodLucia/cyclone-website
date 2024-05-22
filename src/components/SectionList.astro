@@ -1,0 +1,22 @@
+---
+import SectionItem from "./SectionItem.astro";
+
+export type ListType = "RELEASE" | "STORE" | "SHOW"
+interface Props {
+  type: ListType;
+  resources: any[];
+  className?: string;
+}
+
+const { type, resources, className } = Astro.props;
+const imagesObj = import.meta.glob<{ default: ImageMetadata }>(`/src/assets/resources/*.{jpeg,jpg,png,gif}`, { eager: true })
+---
+
+<ol class:list={["grid gap-4 grid-cols-3 max-md:grid-cols-2", className]}>
+  {
+    resources.map(({ data }) => {
+      const heroImageAsset = imagesObj[data.heroImage].default
+      return <SectionItem type={type} data={data} heroImage={heroImageAsset} />
+    })
+  }
+</ol>

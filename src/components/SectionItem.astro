@@ -1,0 +1,50 @@
+---
+import { Image } from "astro:assets";
+import type { ListType } from "./SectionList.astro";
+
+interface Props {
+  data: any;
+  type: ListType;
+  heroImage: any;
+}
+
+const { data, type, heroImage } = Astro.props;
+---
+
+<li class="flex flex-col gap-3">
+  <a
+    href={data.link}
+    title={data.title}
+    class="text-nowrap text-ellipsis inline-flex overflow-hidden"
+  >
+    <Image src={heroImage} loading="lazy" inferSize decoding="async" alt="" />
+  </a>
+  <div class="flex flex-col gap-1 items-start">
+    {
+      type === "RELEASE" && (
+        <a class="inline-flex justify-center items-center py-1 px-1.5 min-w-10 bg-[#e2e8f0] text-sm leading-[1] rounded-[4px] cursor-pointer">
+          {data.type}
+        </a>
+      )
+    }
+    <a
+      href={data.link}
+      title={data.title}
+      class="w-full leading-[1.4] text-base hover:underline text-[#1a202c]"
+    >
+      {data.title}
+    </a>
+    {
+      type === "RELEASE" && (
+        <span class="text-sm text-[#718096] leading-[1.4]">{data.date}</span>
+      )
+    }
+    {
+      type === "STORE" && (
+        <span class="text-sm text-[#718096] leading-[1.4]">
+          &yen;{data.price}
+        </span>
+      )
+    }
+  </div>
+</li>

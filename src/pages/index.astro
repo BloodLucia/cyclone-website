@@ -3,80 +3,23 @@ import { getCollection } from 'astro:content'
 import Layout from "../layouts/Layout.astro";
 import Content from "../components/Content.astro";
 import Section from "../components/Section.astro";
-import { Debug } from 'astro:components';
-import { Image } from 'astro:assets';
+import SectionList from '../components/SectionList.astro';
 
-const images = await Astro.glob<{ default: ImageMetadata }>("/src/assets/resources/*.{jpg,png}")
 const releases = await getCollection("releases")
+const stores = await getCollection("stores")
+const shows = await getCollection("shows")
 ---
 
 <Layout mustHeader>
   <Content>
-    <!-- <Debug answer={images[0].default} /> -->
     <Section title="音乐">
-      <ol class="grid gap-4 grid-cols-3 max-md:grid-cols-2">
-        {
-          releases.map(({data}, idx) => {
-            const heroImgSrc = images[idx].default
-            return (
-              <li class="flex flex-col gap-3">
-                <a href={data.link} title={data.title} class="text-nowrap text-ellipsis inline-flex overflow-hidden">
-                  <Image src={heroImgSrc} alt="" loading="lazy" decoding="async" />
-                </a>
-                <div class="flex flex-col gap-1 items-start">
-                  <a href="javascript" class= "inline-flex justify-center items-center py-1 px-1.5 min-w-10 bg-[#e2e8f0] text-sm leading-[1] rounded-[4px] cursor-pointer">
-                    {data.type}
-                  </a>
-                  <a href={data.link} title={data.title} class="w-full leading-[1.4] text-base text-nowrap text-ellipsis overflow-hidden hover:underline text-[#1a202c]">{data.title}</a>
-                  <span class="text-sm text-[#718096] leading-[1.4]">{data.date}</span>
-                </div>
-              </li>
-            )
-          })
-        }
-      </ol>
+      <SectionList type="RELEASE" resources={releases} />
     </Section>
     <Section title="周边">
-      <ol class="grid gap-4 grid-cols-3 max-md:grid-cols-2">
-        <li class="flex flex-col gap-3">
-          <a href="" title="《复杂且歪歪扭扭的一首诗》实体专辑" class="text-nowrap text-ellipsis inline-flex overflow-hidden">
-            <img src="/stores/20240521195440.jpg" class="w-full h-auto" alt="《复杂且歪歪扭扭的一首诗》实体专辑" loading="lazy" />
-          </a>
-          <div class="flex flex-col gap-1 items-start">
-            <!-- <span class= "inline-flex justify-center items-center min-w-10 py-1 px-1.5 leading-[1.4] rounded-[4px] bg-[#e2e8f0] text-sm cursor-pointer">
-              WX: CYCLONE49149
-            </span> -->
-            <a href="" title="《复杂且歪歪扭扭的一首诗》实体专辑" class="w-full leading-[1.4] text-base text-wrap hover:underline text-[#1a202c]">
-              《复杂且歪歪扭扭的一首诗》实体专辑
-            </a>
-            <span class="text-sm text-[#718096] leading-[1.4]">&yen;59</span>
-          </div>
-        </li>
-      </ol>
+      <SectionList type="STORE" resources={stores} />
     </Section>
     <Section title="演出">
-      <ol class="grid gap-4 grid-cols-3 max-md:grid-cols-2">
-        <li class="flex flex-col gap-3">
-          <a class="block h-80" href="https://mp.weixin.qq.com/s/_PL4T1G0CTiQDodFPVSg9Q" title="Cyclone赛科隆《复杂且歪歪扭扭的一首诗》专辑巡演">
-            <img class="w-full h-full object-cover" src="/shows/20240521202339.jpg" alt="Cyclone赛科隆《复杂且歪歪扭扭的一首诗》专辑巡演" loading="lazy" />
-          </a>
-          <div class="flex flex-col gap-1 items-start">
-            <a href="https://mp.weixin.qq.com/s/_PL4T1G0CTiQDodFPVSg9Q" title="Cyclone赛科隆《复杂且歪歪扭扭的一首诗》专辑巡演" class="w-full leading-[1.4] text-base text-wrap hover:underline text-[#1a202c]">
-              Cyclone赛科隆《复杂且歪歪扭扭的一首诗》专辑巡演
-            </a>
-          </div>
-        </li>
-        <li class="flex flex-col gap-3">
-          <a class="block h-80" href="https://wap.showstart.com/pages/activity/detail/detail?activityId=227630" title="Cyclone赛科隆《复杂且歪歪扭扭的一首诗》专辑分享会">
-            <img class="w-full h-full object-cover" src="/shows/20240521205140.jpg" alt="Cyclone赛科隆《复杂且歪歪扭扭的一首诗》专辑分享会" loading="lazy" />
-          </a>
-          <div class="flex flex-col gap-1 items-start">
-            <a href="https://wap.showstart.com/pages/activity/detail/detail?activityId=227630" title="Cyclone赛科隆《复杂且歪歪扭扭的一首诗》专辑分享会" class="w-full leading-[1.4] text-base text-wrap hover:underline text-[#1a202c]">
-              Cyclone赛科隆《复杂且歪歪扭扭的一首诗》专辑分享会
-            </a>
-          </div>
-        </li>
-      </ol>
+      <SectionList type="SHOW" resources={shows} />
     </Section>
   </Content>
 </Layout>
