@@ -15,8 +15,11 @@ export default defineConfig({
     // enabled: import.meta.env.DEV
     enabled: false
   },
-  // prefetch: {
-  //   prefetchAll: true
-  // },
+  prefetch: {
+    prefetchAll: true
+  },
   trailingSlash: 'never',
+  image: {
+    service: passthroughImageService(),
+  },
 });
