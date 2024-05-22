@@ -1,13 +1,8 @@
 ---
-import { SITE_EN_NAME, SITE_TITLE } from "../config";
+import { Image } from 'astro:assets';
+import headBigImg from '../assets/images/cover.jpg';
 ---
 
-<section class="relative md:max-w-[640px] md:mx-auto cursor-pointer">
-  <!-- <Image class="my-12 w-full h-auto" src={imgUrl} alt={SITE_TITLE} /> -->
-  <img class="my-12 w-full h-auto" loading="lazy" src="/cover.jpg" alt={SITE_TITLE} srcset="">
-  <div class="absolute w-full min-h-full inset-0 bg-transparent flex justify-end items-end z-10" >
-    <h2 class="text-white font-brand p-3 text-base select-none">
-      {SITE_EN_NAME}
-    </h2>
-  </div>
+<section class="md:max-w-[640px] md:mx-auto">
+  <Image class="my-10 w-full h-full" src={headBigImg} loading="lazy" decoding="async" alt="" />
 </section>
