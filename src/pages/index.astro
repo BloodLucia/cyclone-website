@@ -4,10 +4,21 @@ import Layout from "../layouts/Layout.astro";
 import Content from "../components/Content.astro";
 import Section from "../components/Section.astro";
 import SectionList from '../components/SectionList.astro';
+import { Image } from 'astro:assets';
 
 const releases = await getCollection("releases")
 const stores = await getCollection("stores")
 const shows = await getCollection("shows")
+
+const imgUrls = [
+  "https://jrttwbkvcfohqzcikdef.supabase.co/storage/v1/object/public/assets/cyclone/20240522202413.jpg",
+  "https://jrttwbkvcfohqzcikdef.supabase.co/storage/v1/object/public/assets/cyclone/20240522202433.jpg",
+  "https://jrttwbkvcfohqzcikdef.supabase.co/storage/v1/object/public/assets/cyclone/20240522202439.jpg",
+  "https://jrttwbkvcfohqzcikdef.supabase.co/storage/v1/object/public/assets/cyclone/20240522202445.jpg",
+  "https://jrttwbkvcfohqzcikdef.supabase.co/storage/v1/object/public/assets/cyclone/20240522202452.jpg",
+  "https://jrttwbkvcfohqzcikdef.supabase.co/storage/v1/object/public/assets/cyclone/20240522202506.jpg",
+  "https://jrttwbkvcfohqzcikdef.supabase.co/storage/v1/object/public/assets/cyclone/20240522202519.jpg"
+]
 ---
 
 <Layout mustHeader>
@@ -18,8 +29,34 @@ const shows = await getCollection("shows")
     <Section title="周边">
       <SectionList type="STORE" resources={stores} />
     </Section>
+    <Section title="相册">
+      <ol class="w-full flex gap-3 overflow-hidden overflow-x-auto touch-pan-x transition-transform box-content no-scrollbar">
+        {
+          imgUrls.map(item => {
+            return (
+            <li class="transition-transform">
+              <a href="javascript:;" class="block w-[200px] h-[200px]">
+                <Image class=" object-cover object-center w-full h-full" src={item} alt="" inferSize loading="lazy" decoding="async" />
+              </a>
+            </li>
+            )
+          })
+        }
+      </ol>
+    </Section>
     <Section title="演出">
       <SectionList type="SHOW" resources={shows} />
     </Section>
   </Content>
 </Layout>
+
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+     /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+}
+</style>
